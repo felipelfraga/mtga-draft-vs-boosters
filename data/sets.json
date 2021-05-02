@@ -1,0 +1,600 @@
+{
+    "sets": [
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "XLN",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "XLN",
+            "rarity": "Rare",
+            "totalCards": 63
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "XLN",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "XLN",
+            "rarity": "Common",
+            "totalCards": 101
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "RIX",
+            "rarity": "Uncommon",
+            "totalCards": 60
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "RIX",
+            "rarity": "Rare",
+            "totalCards": 48
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "RIX",
+            "rarity": "Common",
+            "totalCards": 70
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "RIX",
+            "rarity": "Mythic",
+            "totalCards": 13
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "DOM",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "DOM",
+            "rarity": "Common",
+            "totalCards": 101
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "DOM",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "DOM",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "M19",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "M19",
+            "rarity": "Mythic",
+            "totalCards": 16
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "M19",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "M19",
+            "rarity": "Common",
+            "totalCards": 111
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "GRN",
+            "rarity": "Common",
+            "totalCards": 111
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "GRN",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "GRN",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "GRN",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "RNA",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "RNA",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "RNA",
+            "rarity": "Common",
+            "totalCards": 111
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "RNA",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "WAR",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "WAR",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "WAR",
+            "rarity": "Common",
+            "totalCards": 101
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "WAR",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "M20",
+            "rarity": "Common",
+            "totalCards": 112
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "M20",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "M20",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "M20",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "ELD",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "ELD",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "ELD",
+            "rarity": "Common",
+            "totalCards": 101
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "ELD",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "THB",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "THB",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "THB",
+            "rarity": "Common",
+            "totalCards": 101
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "THB",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "IKO",
+            "rarity": "Common",
+            "totalCards": 111
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "IKO",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "IKO",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "IKO",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "M21",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "M21",
+            "rarity": "Common",
+            "totalCards": 111
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "M21",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "M21",
+            "rarity": "Rare",
+            "totalCards": 53
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "ZNR",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "ZNR",
+            "rarity": "Mythic",
+            "totalCards": 20
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "ZNR",
+            "rarity": "Common",
+            "totalCards": 101
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "ZNR",
+            "rarity": "Rare",
+            "totalCards": 64
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "AKR",
+            "rarity": "Mythic",
+            "totalCards": 31
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "AKR",
+            "rarity": "Rare",
+            "totalCards": 74
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "AKR",
+            "rarity": "Common",
+            "totalCards": 108
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "AKR",
+            "rarity": "Uncommon",
+            "totalCards": 90
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "KHM",
+            "rarity": "Common",
+            "totalCards": 111
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "KHM",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "KHM",
+            "rarity": "Rare",
+            "totalCards": 64
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "KHM",
+            "rarity": "Mythic",
+            "totalCards": 20
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "KLR",
+            "rarity": "Uncommon",
+            "totalCards": 97
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "KLR",
+            "rarity": "Common",
+            "totalCards": 104
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "KLR",
+            "rarity": "Rare",
+            "totalCards": 63
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "KLR",
+            "rarity": "Mythic",
+            "totalCards": 22
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "STX",
+            "rarity": "Common",
+            "totalCards": 105
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "STX",
+            "rarity": "Mythic",
+            "totalCards": 21
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "STX",
+            "rarity": "Rare",
+            "totalCards": 69
+        },
+        {
+            "formats": [
+                "Historic",
+                "Standard"
+            ],
+            "name": "STX",
+            "rarity": "Uncommon",
+            "totalCards": 80
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "STA",
+            "rarity": "Mythic",
+            "totalCards": 15
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "STA",
+            "rarity": "Uncommon",
+            "totalCards": 18
+        },
+        {
+            "formats": [
+                "Historic"
+            ],
+            "name": "STA",
+            "rarity": "Rare",
+            "totalCards": 30
+        }
+    ]
+}
