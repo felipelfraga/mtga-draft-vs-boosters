@@ -1,3 +1,5 @@
+// Original article for calculations
+//https://www.mtggoldfish.com/articles/collecting-mtg-arena-part-1-of-2
 
 // For Rares:
 // For Mythics:
