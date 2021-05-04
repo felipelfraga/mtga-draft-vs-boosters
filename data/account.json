@@ -1,0 +1,10 @@
+//https://mtgahelper.com/api/Account
+{
+    "mtgaHelperUserId": null,
+    "provider": null,
+    "email": null,
+    "isAuthenticated": false,
+    "status": null,
+    "responseStatus": "Success",
+    "message": null
+}

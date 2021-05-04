@@ -1,0 +1,10 @@
+//https://mtgahelper.com/api/Account/Signin?email=user&password=password
+{
+    "mtgaHelperUserId": "xxxxxxxxx",
+    "provider": null,
+    "email": "user",
+    "isAuthenticated": true,
+    "status": "Active",
+    "responseStatus": "Success",
+    "message": null
+}
