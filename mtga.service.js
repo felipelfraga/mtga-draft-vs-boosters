@@ -53,7 +53,7 @@ function concatCookies(res) {
   return res.raw.headers['set-cookie'].reduce((concatenated, cookie) => concatenated.concat('; ').concat(cookie));
 }
 
-function assertCurrentCookieIsValid(account, cookies) {
+function assertCurrentCookiesAreValid(account, cookies) {
   if (account.isAuthenticated) {
     console.log(">>>>> valid user cookie was found! \\o/");
     return cookies;
@@ -77,13 +77,13 @@ function setPassword(password, auth) {
   return auth;
 }
 
-function fetchValidCookie(cookies) {
+function fetchValidUserCookies(cookies) {
   console.log(">>>>> signing in...");
 
   return prompt
     .prompt('user: ')
     .then(user => setUser(user))
-    .then(auth => prompt.prompt('password: ').then(password => setPassword(password, auth)))
+    .then(auth => prompt.prompt('password: ', true).then(password => setPassword(password, auth)))
     .then(auth => fetch('https://mtgahelper.com/api/Account/Signin?email=' + auth.user.replace('@', '%40') + '&password=' + auth.password, cookies)
             .then(res => {
               signIn = JSON.parse(res.data);
@@ -100,15 +100,16 @@ function fetchValidCookie(cookies) {
             }));
 }
 
-function onValidCookieUnavailable(error) {
+function signInForNewCookie(error) {
   if (error.code !== 'ENOENT' && error.name !== 'valid-cookie-unavailable') {
     console.log(error);
   }
-  console.log('>>>>> Unable to use existing cookie. Attempting to aquire new one. =(');
-  return fetch('https://mtgahelper.com/api/User/Register')
-            .then(concatCookies)
-            .then(cookies => fetchValidCookie(cookies));
+  console.log('>>>>> Unable to use an existing cookie. Attempting to aquire a new one. =(');
+  return fetchPreSignInCookies().then(cookies => fetchValidUserCookies(cookies));
+}
 
+function fetchPreSignInCookies() {
+  return fetch('https://mtgahelper.com/api/User/Register').then(concatCookies)
 }
 
 exports.signIn = function() {
@@ -116,8 +117,8 @@ exports.signIn = function() {
     .load()
     .then(cookies => fetch('https://mtgahelper.com/api/Account', cookies)
                        .then(res => JSON.parse(res.data))
-                       .then(account => assertCurrentCookieIsValid(account, cookies)))
-    .catch(error => onValidCookieUnavailable(error));
+                       .then(account => assertCurrentCookiesAreValid(account, cookies)))
+    .catch(error => signInForNewCookie(error));
 }
 
 exports.getBoosterCount = function (setName, userCookie) {
