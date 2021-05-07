@@ -1,8 +1,8 @@
 const https = require('https');
 var readline = require('readline');
+const cookiesRepository = require('./cookies.repository.js');
 
 const userAgent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.72 Safari/537.36';
-let userCookie = '';
 
 const RARE = 'Rare'
 const MYTHIC = 'Mythic'
@@ -49,46 +49,83 @@ function fetch(url, cookie) {
   })
 }
 
-function setCookies(res) {
-  options.cookie = res.raw.headers['set-cookie'].reduce((concatenated, cookie) => concatenated.concat('; ').concat(cookie));
-}
-
 function concatCookies(res) {
   return res.raw.headers['set-cookie'].reduce((concatenated, cookie) => concatenated.concat('; ').concat(cookie));
 }
 
 exports.signIn = function(user, password) {
-  return fetch('https://mtgahelper.com/api/Account', userCookie)
-          .then(res => JSON.parse(res.data))
-          .then(account => new Promise((resolve, reject) => {
-            if (account.isAuthenticated) {
-              console.log(">>>>> is authenticated")
-              resolve();
-              return;
-            }
-            fetch('https://mtgahelper.com/api/User/Register')
-              .then(concatCookies)
-              .then(cookies => {
-
-                console.log(">>>>> signing in");
-
-                fetch('https://mtgahelper.com/api/Account/Signin?email=' + user.replace('@', '%40') + '&password=' + password, cookies)
-                  .then(concatCookies)
-                  .then(cookies => userCookie = cookies)
-                  .then(resolve)
-                  .catch(error => reject(error));
-              });
-          }))
-
+  return cookiesRepository
+    .load()
+    .then(cookies => fetch('https://mtgahelper.com/api/Account', cookies)
+                       .then(res => JSON.parse(res.data))
+                       .then(account => {
+                         if (account.isAuthenticated) {
+                           console.log(">>>>> already authenticated");
+                           return cookies;
+                         } else {
+                          throw new Error('invalid-cookie', 'Invalid Cookie');
+                         }
+                       }))
+      .catch(error => {
+        if (error.code !== 'ENOENT' && error.code !== 'invalid-cookie') {
+          console.log(error);
+        }
+        console.log('>>>>> Unable to use existing cookie. Attempting to aquire new one.');
+        return fetch('https://mtgahelper.com/api/User/Register')
+                 .then(concatCookies)
+                 .then(cookies => {
+                   console.log(">>>>> signing in");
+                   return fetch('https://mtgahelper.com/api/Account/Signin?email=' + user.replace('@', '%40') + '&password=' + password, cookies)
+                            .then(concatCookies)
+                            .then(cookies => {
+                              cookiesRepository.store(cookies);
+                              return cookies;
+                            });
+                 });
+      });
+  // return new Promise((resolve, reject) => {
+  //   cookiesRepository.
+  //   load()
+  //       .then(cookies => {
+  //         return fetch('https://mtgahelper.com/api/Account', cookies)
+  //                 .then(res => JSON.parse(res.data))
+  //                 .then(account => {
+  //                   if (account.isAuthenticated) {
+  //                     console.log(">>>>> is authenticated")
+  //                     return cookies;
+  //                   } else {
+  //                     throw new Error('invalid-cookie', 'Invalid Cookie');
+  //                   }
+  //                 })
+  //       })
+  //       .then(resolve)
+  //       .catch(error => {
+  //         if (error.code !== 'ENOENT' && error.code !== 'invalid-cookie') {
+  //           console.log(error);
+  //         }
+  //         console.log('>>>>> Unable to use existing cookie. Attempting to aquire new one.');
+  //         fetch('https://mtgahelper.com/api/User/Register')
+  //           .then(concatCookies)
+  //           .then(cookies => {
+  //             console.log(">>>>> signing in");
+  //             fetch('https://mtgahelper.com/api/Account/Signin?email=' + user.replace('@', '%40') + '&password=' + password, cookies)
+  //               .then(concatCookies)
+  //               .then(cookies => cookiesRepository.store(cookies))
+  //               .then(resolve)
+  //               .catch(error => reject(error));
+  //           })
+  //           .catch(error => reject(error));
+  //       });
+  //   });
 }
 
-exports.getBoosterCount = function (setName) {
+exports.getBoosterCount = function (setName, userCookie) {
   return fetch('https://mtgahelper.com/api/User/Collection', userCookie)
           .then(res => JSON.parse(res.data))
           .then(collection => collection.inventory.boosters.find(booster => booster.set == setName).count);
 }
 
-exports.getMissingAmounts = (setName) => {
+exports.getMissingAmounts = (setName, userCookie) => {
   return fetch('https://mtgahelper.com/api/User/Collection/Missing', userCookie)
           .then(res => JSON.parse(res.data))
           .then(cardsMissing => {

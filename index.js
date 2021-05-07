@@ -12,8 +12,8 @@ if (!setName || !user || !password) {
 }
 
 mtga.signIn(user, password)
-  .then(() => {
-    Promise.all([mtga.getMissingAmounts(setName), mtga.getBoosterCount(setName), mtga.getSetTotals(setName)])
+  .then((cookies) => {
+    Promise.all([mtga.getMissingAmounts(setName, cookies), mtga.getBoosterCount(setName, cookies), mtga.getSetTotals(setName)])
       .then(results => {
         let calculatorInputForRares = {
           amountInSet: results[2].rares,

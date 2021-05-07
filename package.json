@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/felipelfraga/mtga-draft-vs-boosters/issues"
   },
-  "homepage": "https://github.com/felipelfraga/mtga-draft-vs-boosters#readme"
+  "homepage": "https://github.com/felipelfraga/mtga-draft-vs-boosters#readme",
+  "dependencies": {
+    "mkdirp": "^1.0.4"
+  }
 }
