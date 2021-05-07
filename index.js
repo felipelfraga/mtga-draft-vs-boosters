@@ -1,5 +1,6 @@
-let mtga = require('./mtga.service.js');
-let calculator = require('./calculator.service.js');
+const mtgaAuth = require('./mtga-auth.service.js');
+const mtga = require('./mtga.service.js');
+const calculator = require('./calculator.service.js');
 
 let args = process.argv.slice(2);
 let setName = args[0];
@@ -9,7 +10,7 @@ if (!setName) {
   process.exit(1);
 }
 
-mtga.signIn()
+mtgaAuth.signIn()
   .then((cookies) => {
     Promise.all([mtga.getMissingAmounts(setName, cookies), mtga.getBoosterCount(setName, cookies), mtga.getSetTotals(setName)])
       .then(results => {
