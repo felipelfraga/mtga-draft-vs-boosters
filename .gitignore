@@ -125,3 +125,6 @@ dist/
 # Temporary folders
 tmp/
 temp/
+
+# jsdoc
+out/

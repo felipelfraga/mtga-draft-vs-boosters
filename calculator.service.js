@@ -29,26 +29,33 @@ const GLOBAL_ADJUSTMENT = 11/12;
 const RARES_ADJUSTMENT = (7/8)*GLOBAL_ADJUSTMENT;
 const MYTHICS_ADJUSTMENT = (1/8)*GLOBAL_ADJUSTMENT;
 
-// let input = {
-//   amountInSet: 0,
-//   amountInCollection: 0,
-//   amountNewCardsPerDraft: 0,
-//   averageAmountBoosterRewardPerDraft: 0
-//   amountOwnedBoosters
-// }
 
- 
+/**
+ * @typedef {Object} Input
+ * @property {number} input.amountInSet - The total amount of cards that exists in the targeted set
+ * @property {number} input.amountInCollection - The total amount of cards already owned by the user
+ * @property {number} input.amountNewCardsPerDraft - The average cards aquired per draft session
+ * @property {number} input.averageAmountBoosterRewardPerDraft - The average amount of boosters rewarded per draft session
+ * @property {number} input.amountOwnedBoosters - The amount of boosters already owned by the user
+ */
+
+/**
+ * 
+ * @param {Input} - The calculation required parameters
+ * @returns The drafts needed before start opening boosters for collecting all rare cards
+ */
 exports.draftsNeededForRares = function(input) {
   return draftsNeeded(input, RARES_ADJUSTMENT)
 }  
 
+/**
+ * 
+ * @param {Input} - The calculation required parameters
+ * @returns The drafts needed before start opening boosters for collecting all mythic cards
+ */
 exports.draftsNeededForMythics = function(input) {
   return draftsNeeded(input, MYTHICS_ADJUSTMENT)
 }
-
-// const draftsNeeded = function(totalCardsInSet, totalCardsCollected, totalPacksOwned, totalNewCardsPerDraft, averagePacksRewardedPerDraft, adjustment) {
-//   return (totalCardsInSet - totalPacksOwned*adjustment*GLOBAL_ADJUSTMENT - totalCardsCollected)/(totalNewCardsPerDraft+averagePacksRewardedPerDraft*adjustment*GLOBAL_ADJUSTMENT)
-// }
 
 const draftsNeeded = function(input, adjustment) {
   return (input.amountInSet - input.amountOwnedBoosters*adjustment - input.amountInCollection)/(input.amountNewCardsPerDraft+input.averageAmountBoosterRewardPerDraft*adjustment)

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/felipelfraga/mtga-draft-vs-boosters#readme",
   "dependencies": {
+    "jsdoc": "^3.6.6",
     "mkdirp": "^1.0.4"
   }
 }
