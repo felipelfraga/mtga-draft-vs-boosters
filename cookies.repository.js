@@ -7,10 +7,10 @@ const userCookiesFilePath = homeDir + '/.mtga-draft-vs-boosters/user-cookies.jso
 
 exports.load = function() {
     return files
-        .loadData2(userCookiesFilePath)
+        .loadData(userCookiesFilePath)
             .then(data => data.data);
 }
 
 exports.store = function(cookies) {
-    return files.storeData2(userCookiesFilePath, { data: cookies });
+    return files.storeData(userCookiesFilePath, { data: cookies });
 }
