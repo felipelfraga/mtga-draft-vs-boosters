@@ -3,15 +3,13 @@ let calculator = require('./calculator.service.js');
 
 let args = process.argv.slice(2);
 let setName = args[0];
-let user = args[1]
-let password = args[2]
 
-if (!setName || !user || !password) {
-  console.log('Set name, user and password are required')
+if (!setName) {
+  console.log('Set name is required')
   process.exit(1);
 }
 
-mtga.signIn(user, password)
+mtga.signIn()
   .then((cookies) => {
     Promise.all([mtga.getMissingAmounts(setName, cookies), mtga.getBoosterCount(setName, cookies), mtga.getSetTotals(setName)])
       .then(results => {
