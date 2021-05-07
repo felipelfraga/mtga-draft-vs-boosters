@@ -53,70 +53,44 @@ function concatCookies(res) {
   return res.raw.headers['set-cookie'].reduce((concatenated, cookie) => concatenated.concat('; ').concat(cookie));
 }
 
+function assertCurrentCookieIsValid(account, cookies) {
+  if (account.isAuthenticated) {
+    console.log(">>>>> valid user cookie was found! \\o/");
+    return cookies;
+  } else {
+   throw new Error('valid-cookie-unavailable', 'Invalid Cookie');
+  }
+}
+
+function fetchValidCookie(user, password, cookies) {
+  console.log(">>>>> signing in...");
+  return fetch('https://mtgahelper.com/api/Account/Signin?email=' + user.replace('@', '%40') + '&password=' + password, cookies)
+    .then(concatCookies)
+    .then(cookies => {
+      cookiesRepository.store(cookies);
+      console.log(">>>>> signed in successfully!");
+      return cookies;
+    });
+}
+
+function onValidCookieUnavailable(user, password, error) {
+  if (error.code !== 'ENOENT' && error.name !== 'valid-cookie-unavailable') {
+    console.log(error);
+  }
+  console.log('>>>>> Unable to use existing cookie. Attempting to aquire new one. =(');
+  return fetch('https://mtgahelper.com/api/User/Register')
+            .then(concatCookies)
+            .then(cookies => fetchValidCookie(user, password, cookies));
+
+}
+
 exports.signIn = function(user, password) {
   return cookiesRepository
     .load()
     .then(cookies => fetch('https://mtgahelper.com/api/Account', cookies)
                        .then(res => JSON.parse(res.data))
-                       .then(account => {
-                         if (account.isAuthenticated) {
-                           console.log(">>>>> already authenticated");
-                           return cookies;
-                         } else {
-                          throw new Error('invalid-cookie', 'Invalid Cookie');
-                         }
-                       }))
-      .catch(error => {
-        if (error.code !== 'ENOENT' && error.code !== 'invalid-cookie') {
-          console.log(error);
-        }
-        console.log('>>>>> Unable to use existing cookie. Attempting to aquire new one.');
-        return fetch('https://mtgahelper.com/api/User/Register')
-                 .then(concatCookies)
-                 .then(cookies => {
-                   console.log(">>>>> signing in");
-                   return fetch('https://mtgahelper.com/api/Account/Signin?email=' + user.replace('@', '%40') + '&password=' + password, cookies)
-                            .then(concatCookies)
-                            .then(cookies => {
-                              cookiesRepository.store(cookies);
-                              return cookies;
-                            });
-                 });
-      });
-  // return new Promise((resolve, reject) => {
-  //   cookiesRepository.
-  //   load()
-  //       .then(cookies => {
-  //         return fetch('https://mtgahelper.com/api/Account', cookies)
-  //                 .then(res => JSON.parse(res.data))
-  //                 .then(account => {
-  //                   if (account.isAuthenticated) {
-  //                     console.log(">>>>> is authenticated")
-  //                     return cookies;
-  //                   } else {
-  //                     throw new Error('invalid-cookie', 'Invalid Cookie');
-  //                   }
-  //                 })
-  //       })
-  //       .then(resolve)
-  //       .catch(error => {
-  //         if (error.code !== 'ENOENT' && error.code !== 'invalid-cookie') {
-  //           console.log(error);
-  //         }
-  //         console.log('>>>>> Unable to use existing cookie. Attempting to aquire new one.');
-  //         fetch('https://mtgahelper.com/api/User/Register')
-  //           .then(concatCookies)
-  //           .then(cookies => {
-  //             console.log(">>>>> signing in");
-  //             fetch('https://mtgahelper.com/api/Account/Signin?email=' + user.replace('@', '%40') + '&password=' + password, cookies)
-  //               .then(concatCookies)
-  //               .then(cookies => cookiesRepository.store(cookies))
-  //               .then(resolve)
-  //               .catch(error => reject(error));
-  //           })
-  //           .catch(error => reject(error));
-  //       });
-  //   });
+                       .then(account => assertCurrentCookieIsValid(account, cookies)))
+    .catch(error => onValidCookieUnavailable(user, password, error));
 }
 
 exports.getBoosterCount = function (setName, userCookie) {
@@ -170,3 +144,5 @@ exports.getSetTotals = function (setName) {
             return amountInSet;
           });
 }
+
+
